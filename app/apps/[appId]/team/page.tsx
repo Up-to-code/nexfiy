@@ -3,8 +3,9 @@ import { Card } from '@/components/ui/card'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 
-export async function generateMetadata({ params }: { params: { appId: string } }) {
-  const app = NEXFIY_APPS.find((a) => a.id === params.appId)
+export async function generateMetadata({ params }: { params: Promise<{ appId: string }> }) {
+  const resolvedParams = await params
+  const app = NEXFIY_APPS.find((a) => a.id === resolvedParams.appId)
   if (!app) return {}
 
   return {
@@ -13,8 +14,9 @@ export async function generateMetadata({ params }: { params: { appId: string } }
   }
 }
 
-export default function AppTeamPage({ params }: { params: { appId: string } }) {
-  const app = NEXFIY_APPS.find((a) => a.id === params.appId)
+export default async function AppTeamPage({ params }: { params: Promise<{ appId: string }> }) {
+  const resolvedParams = await params
+  const app = NEXFIY_APPS.find((a) => a.id === resolvedParams.appId)
 
   if (!app) {
     notFound()

@@ -1,9 +1,7 @@
 import { NEXFIY_APPS } from '@/lib/apps-data'
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Star, Download, Heart, Share2, Apple, Smartphone, Globe, Facebook, Twitter, Linkedin, Mail } from 'lucide-react'
+import { Download, ExternalLink } from 'lucide-react'
 
 export async function generateStaticParams() {
   return NEXFIY_APPS.map((app) => ({
@@ -11,8 +9,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: { appId: string } }) {
-  const app = NEXFIY_APPS.find((a) => a.id === params.appId)
+export async function generateMetadata({ params }: { params: Promise<{ appId: string }> }) {
+  const resolvedParams = await params
+  const app = NEXFIY_APPS.find((a) => a.id === resolvedParams.appId)
   if (!app) return {}
 
   return {
@@ -21,431 +20,131 @@ export async function generateMetadata({ params }: { params: { appId: string } }
   }
 }
 
-export default function AppPage({ params }: { params: { appId: string } }) {
-  const app = NEXFIY_APPS.find((a) => a.id === params.appId)
+export default async function AppPage({ params }: { params: Promise<{ appId: string }> }) {
+  const resolvedParams = await params
+  const app = NEXFIY_APPS.find((a) => a.id === resolvedParams.appId)
 
   if (!app) {
     notFound()
   }
 
-  const relatedApps = NEXFIY_APPS.filter((a) => a.id !== app.id).slice(0, 3)
-
   return (
-    <main className="min-h-screen bg-background">
-      {/* Header Section */}
-      <section className={`bg-gradient-to-br ${app.gradient}`}>
-        <div className="container mx-auto px-4 md:px-6 py-16 md:py-28">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-start gap-8 mb-10">
-              <div className="text-8xl flex-shrink-0">{app.icon}</div>
-              <div className="flex-1">
-                <div className="mb-4">
-                  <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-2">
-                    {app.name}
-                  </h1>
-                  <p className="text-lg text-foreground/70">
-                    {app.tagline}
-                  </p>
-                </div>
-
-                {/* Rating and Stats */}
-                <div className="flex flex-wrap items-center gap-6 mb-10">
-                  <div className="flex items-center gap-3">
-                    <div className="flex gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-5 h-5 ${i < Math.floor(app.rating) ? 'fill-foreground text-foreground' : 'fill-foreground/30 text-foreground/30'}`}
-                        />
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="font-bold text-lg text-foreground">{app.rating}</span>
-                      <span className="text-sm text-foreground/70">({app.reviews.toLocaleString()} reviews)</span>
-                    </div>
-                  </div>
-                  <div className="text-sm text-foreground/70 flex items-center gap-1">
-                    <Download className="w-4 h-4" />
-                    {app.downloads} downloads
-                  </div>
-                </div>
-
-                {/* Primary CTAs and Social */}
-                <div className="flex flex-col gap-6">
-                  <div className="flex flex-wrap gap-3">
-                    <Button className="h-12 px-8 text-base bg-foreground text-background hover:bg-foreground/90" asChild>
-                      <a href={`#app-store-${app.id}`} className="flex items-center gap-2">
-                        <Apple className="w-5 h-5" />
-                        App Store
-                      </a>
-                    </Button>
-                    <Button className="h-12 px-8 text-base bg-foreground text-background hover:bg-foreground/90" asChild>
-                      <a href={`#google-play-${app.id}`} className="flex items-center gap-2">
-                        <Smartphone className="w-5 h-5" />
-                        Google Play
-                      </a>
-                    </Button>
-                    {app.platforms.includes('Web') && (
-                      <Button className="h-12 px-8 text-base bg-foreground text-background hover:bg-foreground/90" asChild>
-                        <a href={`#web-app-${app.id}`} className="flex items-center gap-2">
-                          <Globe className="w-5 h-5" />
-                          Open Web
-                        </a>
-                      </Button>
-                    )}
-                  </div>
-
-                  {/* Social Media and Secondary Actions */}
-                  <div className="flex items-center gap-4 flex-wrap">
-                    <span className="text-sm text-foreground/70">Share:</span>
-                    <div className="flex gap-3">
-                      <Button variant="ghost" size="sm" className="rounded-full hover:bg-foreground/20">
-                        <Facebook className="w-5 h-5" />
-                        <span className="sr-only">Share on Facebook</span>
-                      </Button>
-                      <Button variant="ghost" size="sm" className="rounded-full hover:bg-foreground/20">
-                        <Twitter className="w-5 h-5" />
-                        <span className="sr-only">Share on Twitter</span>
-                      </Button>
-                      <Button variant="ghost" size="sm" className="rounded-full hover:bg-foreground/20">
-                        <Linkedin className="w-5 h-5" />
-                        <span className="sr-only">Share on LinkedIn</span>
-                      </Button>
-                    </div>
-                    <Button variant="ghost" size="sm" className="ml-auto hover:bg-foreground/20 gap-2">
-                      <Heart className="w-5 h-5" />
-                      Save
-                    </Button>
-                  </div>
-                </div>
+    <main className="min-h-screen bg-background text-foreground font-sans selection:bg-foreground selection:text-background pb-24">
+      <article className="container mx-auto px-6 md:px-12 max-w-3xl pt-24 md:pt-32">
+        
+        {/* Header Section - App Store Style */}
+        <header className="mb-16">
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start mb-10">
+            {/* Squircle Icon */}
+            <div className="w-28 h-28 sm:w-[132px] sm:h-[132px] flex-shrink-0 flex items-center justify-center rounded-[28px] sm:rounded-[32px] bg-background border border-border/50 shadow-md">
+              <div className="scale-125 sm:scale-150">
+                {app.icon}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Overview */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-foreground mb-6">About {app.name}</h2>
-            <p className="text-lg text-foreground/80 leading-relaxed mb-8">
-              {app.longDescription}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="py-16 md:py-24 bg-secondary/20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Features</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {app.detailedFeatures.map((feature, idx) => (
-                <Card key={idx} className="p-6 bg-background border border-border hover:shadow-md transition-shadow">
-                  <h3 className="text-lg font-bold text-foreground mb-2">
-                    {feature.name}
-                  </h3>
-                  <p className="text-foreground/70">
-                    {feature.description}
-                  </p>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Platforms Section */}
-      <section id={`app-store-${app.id}`} className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-foreground mb-12">Download {app.name}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {app.platforms.includes('iOS') && (
-                <Card className="p-8 bg-secondary/30 border border-border hover:shadow-lg transition-all group">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="text-5xl">🍎</div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-foreground mb-2">iOS</h3>
-                      <p className="text-foreground/70">iPhone, iPad, and Apple Vision</p>
-                    </div>
-                  </div>
-                  <Button asChild className="w-full h-12 mb-3 bg-black text-white hover:bg-black/80">
-                    <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                      <Apple className="w-5 h-5" />
-                      Get on App Store
-                    </a>
-                  </Button>
-                  <p className="text-xs text-foreground/60 text-center">
-                    Requires iOS 14.0 or later
-                  </p>
-                </Card>
-              )}
-              
-              {app.platforms.includes('Android') && (
-                <Card className="p-8 bg-secondary/30 border border-border hover:shadow-lg transition-all group">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="text-5xl">🤖</div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-foreground mb-2">Android</h3>
-                      <p className="text-foreground/70">Android phones and tablets</p>
-                    </div>
-                  </div>
-                  <Button asChild className="w-full h-12 mb-3 bg-green-600 text-white hover:bg-green-700">
-                    <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                      <Smartphone className="w-5 h-5" />
-                      Get on Google Play
-                    </a>
-                  </Button>
-                  <p className="text-xs text-foreground/60 text-center">
-                    Requires Android 10 or later
-                  </p>
-                </Card>
-              )}
-
-              {app.platforms.includes('Web') && (
-                <Card className="p-8 bg-secondary/30 border border-border hover:shadow-lg transition-all group">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="text-5xl">🌐</div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-foreground mb-2">Web</h3>
-                      <p className="text-foreground/70">Browser-based, no installation needed</p>
-                    </div>
-                  </div>
-                  <Button asChild className="w-full h-12 mb-3" id={`web-app-${app.id}`}>
-                    <a href="https://app.nexfiy.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                      <Globe className="w-5 h-5" />
-                      Open Web App
-                    </a>
-                  </Button>
-                  <p className="text-xs text-foreground/60 text-center">
-                    Chrome, Safari, Firefox, Edge
-                  </p>
-                </Card>
-              )}
-
-              {app.platforms.includes('macOS') && (
-                <Card className="p-8 bg-secondary/30 border border-border hover:shadow-lg transition-all group">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="text-5xl">💻</div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-foreground mb-2">macOS</h3>
-                      <p className="text-foreground/70">Mac App Store and direct download</p>
-                    </div>
-                  </div>
-                  <Button asChild className="w-full h-12 mb-3 bg-gray-800 text-white hover:bg-gray-900">
-                    <a href="https://apps.apple.com/mac" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                      <Apple className="w-5 h-5" />
-                      Get on App Store
-                    </a>
-                  </Button>
-                  <p className="text-xs text-foreground/60 text-center">
-                    macOS 12.0 or later
-                  </p>
-                </Card>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div id={`google-play-${app.id}`} className="sr-only">Google Play target</div>
-
-      {/* Pricing Section */}
-      <section className="py-16 md:py-24 bg-secondary/20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Pricing & Version</h2>
-            <Card className="p-12 bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-foreground/20">
-              <div className="text-center">
-                <div className="text-5xl font-bold text-foreground mb-2">
-                  {app.price}
-                </div>
-                <p className="text-lg text-foreground/70 mb-8">
-                  No hidden fees • Cancel anytime
-                </p>
-                <div className="space-y-3 p-6 bg-background rounded-lg mb-8">
-                  <p className="text-sm text-foreground">
-                    <strong>Current Version:</strong> {app.version}
-                  </p>
-                  <p className="text-sm text-foreground/70">
-                    Regular updates with new features and improvements
-                  </p>
-                </div>
-                <Button size="lg" className="h-12 px-8 w-full" asChild>
-                  <a href={`#app-store-${app.id}`} className="text-base">
-                    Get {app.name} Now
-                  </a>
-                </Button>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Legal & Info Links */}
-      <section className="py-16 md:py-20 bg-background border-t border-border">
-        <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-2xl font-bold text-foreground mb-10 text-center">Legal & Information</h2>
-          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link href={`/apps/${app.id}/privacy`}>
-              <Card className="p-6 text-center cursor-pointer hover:shadow-md transition-shadow group h-full">
-                <h3 className="font-bold text-foreground mb-2 group-hover:text-blue-600 transition-colors">
-                  Privacy Policy
-                </h3>
-                <p className="text-sm text-foreground/70">
-                  How we collect and protect your data
-                </p>
-              </Card>
-            </Link>
-            <Link href={`/apps/${app.id}/security`}>
-              <Card className="p-6 text-center cursor-pointer hover:shadow-md transition-shadow group h-full">
-                <h3 className="font-bold text-foreground mb-2 group-hover:text-blue-600 transition-colors">
-                  Security Details
-                </h3>
-                <p className="text-sm text-foreground/70">
-                  Encryption and compliance information
-                </p>
-              </Card>
-            </Link>
-            <a href="https://www.apple.com/legal/privacy/products/" target="_blank" rel="noopener noreferrer">
-              <Card className="p-6 text-center cursor-pointer hover:shadow-md transition-shadow group h-full">
-                <h3 className="font-bold text-foreground mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-center gap-2">
-                  <Apple className="w-4 h-4" />
-                  Apple Legal
-                </h3>
-                <p className="text-sm text-foreground/70">
-                  Apple Privacy & Terms
-                </p>
-              </Card>
-            </a>
-            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
-              <Card className="p-6 text-center cursor-pointer hover:shadow-md transition-shadow group h-full">
-                <h3 className="font-bold text-foreground mb-2 group-hover:text-blue-600 transition-colors flex items-center justify-center gap-2">
-                  <Smartphone className="w-4 h-4" />
-                  Google Legal
-                </h3>
-                <p className="text-sm text-foreground/70">
-                  Google Privacy & Terms
-                </p>
-              </Card>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Us - Founder Section */}
-      <section className="py-20 md:py-32 bg-secondary/20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-foreground mb-4 text-center">Meet the Builder</h2>
-            <p className="text-center text-foreground/70 mb-12">
-              {app.name} is built by a founder dedicated to creating meaningful digital experiences.
-            </p>
             
-            <Card className="p-10 md:p-14 bg-background border-2 border-foreground/20">
-              <div className="mb-12">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 mx-auto mb-6 flex items-center justify-center text-4xl">
-                  👤
-                </div>
-                <div className="text-center mb-10">
-                  <h3 className="text-2xl font-bold text-foreground mb-3">
-                    Founder & Product Creator
-                  </h3>
-                  <p className="text-foreground/80 leading-relaxed mb-6">
-                    I'm a builder focused on creating simple, meaningful digital experiences. As a co-founder and product creator, my work sits at the intersection of health, focus, and productivity.
-                  </p>
-                  <p className="text-foreground/80 leading-relaxed mb-6">
-                    I believe technology should support people—not distract them. That's why I design apps that help users think clearly, stay consistent, and take better care of themselves in a fast-moving world.
-                  </p>
-                </div>
-
-                <div className="space-y-3 p-6 bg-secondary/30 rounded-lg mb-10 border border-foreground/10">
-                  <h4 className="font-bold text-foreground mb-4">Vision</h4>
-                  <p className="text-sm text-foreground/80 leading-relaxed mb-3">
-                    My vision is to build a focused ecosystem of tools that improve daily life—quietly but effectively.
-                  </p>
-                  <p className="text-sm text-foreground/80 leading-relaxed">
-                    In a world full of distractions, I'm interested in creating technology that feels calm, intentional, and genuinely useful.
-                  </p>
-                </div>
+            {/* Title & Actions */}
+            <div className="flex-1 flex flex-col justify-center py-1">
+              <h1 className="text-3xl sm:text-[34px] font-bold tracking-tight text-foreground leading-tight mb-1">
+                {app.name}
+              </h1>
+              <p className="text-lg sm:text-[22px] text-foreground/50 tracking-tight mb-5">
+                {app.tagline}
+              </p>
+              
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-3">
+                 {app.platforms.includes('iOS') && (
+                    <a href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-8 sm:h-9 px-6 rounded-full bg-foreground text-background text-[15px] font-bold hover:opacity-90 transition-opacity">
+                      GET
+                    </a>
+                 )}
+                 {app.platforms.includes('macOS') && (
+                    <a href="https://apps.apple.com/mac" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-8 sm:h-9 px-6 rounded-full bg-secondary text-foreground text-[15px] font-bold hover:bg-secondary/70 transition-colors">
+                      MAC
+                    </a>
+                 )}
+                 {app.platforms.includes('Android') && (
+                    <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-8 sm:h-9 px-6 rounded-full bg-secondary text-foreground text-[15px] font-bold hover:bg-secondary/70 transition-colors">
+                      ANDROID
+                    </a>
+                 )}
+                 {app.platforms.includes('Web') && (
+                    <a href="https://app.nexfiy.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5 h-8 sm:h-9 px-5 rounded-full bg-secondary text-foreground text-[15px] font-bold hover:bg-secondary/70 transition-colors">
+                      WEB <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                 )}
               </div>
-
-              <div className="border-t border-foreground/10 pt-10">
-                <h4 className="text-lg font-bold text-foreground mb-6 text-center">Get in Touch</h4>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 bg-secondary/40 rounded-lg hover:bg-secondary/60 transition-colors">
-                    <Mail className="w-6 h-6 text-foreground flex-shrink-0" />
-                    <div className="flex-1">
-                      <p className="text-sm text-foreground/70">Email Support</p>
-                      <a href="mailto:support@nexfiy.app" className="text-foreground font-semibold hover:underline">
-                        support@nexfiy.app
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4 p-4 bg-secondary/40 rounded-lg hover:bg-secondary/60 transition-colors">
-                    <Twitter className="w-6 h-6 text-foreground flex-shrink-0" />
-                    <div className="flex-1">
-                      <p className="text-sm text-foreground/70">Twitter / X</p>
-                      <a href="https://twitter.com/nexfiy" target="_blank" rel="noopener noreferrer" className="text-foreground font-semibold hover:underline">
-                        @nexfiy
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4 p-4 bg-secondary/40 rounded-lg hover:bg-secondary/60 transition-colors">
-                    <Linkedin className="w-6 h-6 text-foreground flex-shrink-0" />
-                    <div className="flex-1">
-                      <p className="text-sm text-foreground/70">LinkedIn</p>
-                      <a href="https://linkedin.com/company/nexfiy" target="_blank" rel="noopener noreferrer" className="text-foreground font-semibold hover:underline">
-                        Nexfiy Team
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-10 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-foreground/10">
-                <p className="text-sm text-foreground/80 mb-4">
-                  <strong>Response Time:</strong> Most inquiries are answered within 24 hours. I personally read and respond to messages.
-                </p>
-                <Button asChild className="w-full">
-                  <a href="mailto:support@nexfiy.app">Send a Message</a>
-                </Button>
-              </div>
-            </Card>
+            </div>
           </div>
-        </div>
-      </section>
+          
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4 py-4 border-y border-border/50 text-[13px] text-foreground/50 font-medium uppercase tracking-wide">
+            <span className="flex flex-col items-start gap-1">
+              <span className="text-foreground text-[17px] tracking-tight">{app.rating} ★</span>
+              {app.reviews.toLocaleString()} Ratings
+            </span>
+            <div className="w-px h-8 bg-border/50" />
+            <span className="flex flex-col items-start gap-1">
+              <span className="text-foreground text-[17px] tracking-tight">#{app.downloads}</span>
+              Downloads
+            </span>
+            <div className="w-px h-8 bg-border/50" />
+            <span className="flex flex-col items-start gap-1">
+              <span className="text-foreground text-[17px] tracking-tight">v{app.version}</span>
+              Version
+            </span>
+          </div>
+        </header>
 
-      {/* Related Apps */}
-      <section className="py-20 md:py-32 bg-background">
-        <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-3xl font-bold text-foreground mb-12">Explore More Apps</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl">
-            {relatedApps.map((relatedApp) => (
-              <Link key={relatedApp.id} href={`/apps/${relatedApp.id}`}>
-                <Card className={`overflow-hidden cursor-pointer hover:shadow-lg transition-all group bg-gradient-to-br ${relatedApp.gradient}`}>
-                  <div className="h-32 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    {relatedApp.icon}
-                  </div>
-                  <div className="p-6 bg-background">
-                    <h3 className="font-bold text-foreground mb-1">
-                      {relatedApp.name}
-                    </h3>
-                    <p className="text-sm text-foreground/70">
-                      {relatedApp.tagline}
-                    </p>
-                  </div>
-                </Card>
-              </Link>
+        {/* Description */}
+        <section className="mb-16">
+          <h2 className="text-xl font-bold tracking-tight text-foreground mb-4">Overview</h2>
+          <p className="text-[17px] leading-relaxed text-foreground/80">
+            {app.longDescription}
+          </p>
+        </section>
+
+        {/* Features Section - Apple Grouped List */}
+        <section className="mb-16">
+          <h2 className="text-xl font-bold tracking-tight text-foreground mb-4">Features</h2>
+          <div className="bg-secondary/30 rounded-[22px] overflow-hidden border border-border/50">
+            {app.detailedFeatures.map((feature, idx) => (
+              <div key={idx}>
+                <div className="p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+                  <span className="font-semibold text-foreground text-[17px] sm:w-[200px] shrink-0">{feature.name}</span>
+                  <span className="text-[15px] text-foreground/70 leading-relaxed">{feature.description}</span>
+                </div>
+                {idx !== app.detailedFeatures.length - 1 && (
+                  <div className="h-px bg-border/50 ml-5 sm:ml-[236px]" />
+                )}
+              </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* About the Builder - Grouped List */}
+        <section className="mb-16">
+           <h2 className="text-xl font-bold tracking-tight text-foreground mb-4">Developer</h2>
+           <div className="bg-secondary/30 rounded-[22px] overflow-hidden border border-border/50 p-6">
+             <p className="text-[15px] text-foreground/80 leading-relaxed mb-4">
+               {app.name} is designed and built by a founder focused on creating calm, intentional, and meaningful digital experiences. Technology should support you, not distract you.
+             </p>
+             <a href="mailto:support@nexfiy.app" className="inline-flex items-center justify-center h-9 px-5 rounded-full bg-background border border-border/50 text-[15px] font-semibold text-foreground hover:bg-secondary/50 transition-colors">
+               Contact Support
+             </a>
+           </div>
+        </section>
+
+        {/* Footer Links */}
+        <footer className="pt-8 border-t border-border/50">
+          <div className="flex flex-wrap gap-x-6 gap-y-4 text-[13px] text-foreground/50 font-medium">
+            <Link href={`/apps/${app.id}/privacy`} className="hover:text-foreground transition-colors">Privacy Policy</Link>
+            <Link href={`/apps/${app.id}/security`} className="hover:text-foreground transition-colors">Security</Link>
+            <a href="https://www.apple.com/legal/privacy/products/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Apple Legal</a>
+            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Google Legal</a>
+          </div>
+        </footer>
+
+      </article>
     </main>
   )
 }

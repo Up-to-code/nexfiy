@@ -4,8 +4,9 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Shield, Lock, CheckCircle } from 'lucide-react'
 
-export async function generateMetadata({ params }: { params: { appId: string } }) {
-  const app = NEXFIY_APPS.find((a) => a.id === params.appId)
+export async function generateMetadata({ params }: { params: Promise<{ appId: string }> }) {
+  const resolvedParams = await params
+  const app = NEXFIY_APPS.find((a) => a.id === resolvedParams.appId)
   if (!app) return {}
 
   return {
@@ -14,8 +15,9 @@ export async function generateMetadata({ params }: { params: { appId: string } }
   }
 }
 
-export default function AppSecurityPage({ params }: { params: { appId: string } }) {
-  const app = NEXFIY_APPS.find((a) => a.id === params.appId)
+export default async function AppSecurityPage({ params }: { params: Promise<{ appId: string }> }) {
+  const resolvedParams = await params
+  const app = NEXFIY_APPS.find((a) => a.id === resolvedParams.appId)
 
   if (!app) {
     notFound()

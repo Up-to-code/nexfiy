@@ -19,6 +19,7 @@ export interface NexfiyApp {
   team: Array<{ id: string; name: string; role: string; avatar: string; bio: string }>;
   privacy: { dataCollection: string; dataStorage: string; userRights: string };
   security: { encryption: string; compliance: string[]; audits: string };
+  icon?: React.ReactNode;
 }
 
 // SVG Icons for apps
@@ -73,6 +74,7 @@ export const NEXFIY_APPS: NexfiyApp[] = [
   {
     id: 'vitality',
     name: 'Vitality',
+    icon: <VitalityIcon />,
     tagline: 'Health Tracking',
     description: 'Track your health metrics with precision and care.',
     fullDescription: 'Vitality is a comprehensive health tracking app designed to monitor vital signs, activity, and wellness metrics. Built with meticulous attention to detail, it transforms health monitoring into a simple, insightful daily habit.',
@@ -120,6 +122,7 @@ export const NEXFIY_APPS: NexfiyApp[] = [
   {
     id: 'focus-hub',
     name: 'Focus Hub',
+    icon: <FocusHubIcon />,
     tagline: 'Deep Work',
     description: 'Eliminate distractions and maximize your focus.',
     fullDescription: 'Focus Hub creates an optimal environment for deep, concentrated work. Block distractions intelligently, track focus sessions, and build an unbreakable focus habit with carefully crafted features.',
@@ -167,6 +170,7 @@ export const NEXFIY_APPS: NexfiyApp[] = [
   {
     id: 'mindflow',
     name: 'MindFlow',
+    icon: <MindFlowIcon />,
     tagline: 'Meditation & Wellness',
     description: 'Guided meditations for inner peace and clarity.',
     fullDescription: 'MindFlow brings curated meditation sessions, breathing exercises, and mindfulness practices. Created with intention and care, it helps you find calm and clarity in everyday moments.',
@@ -214,6 +218,7 @@ export const NEXFIY_APPS: NexfiyApp[] = [
   {
     id: 'task-master',
     name: 'Task Master',
+    icon: <TaskMasterIcon />,
     tagline: 'Task Management',
     description: 'Smart task organization for meaningful work.',
     fullDescription: 'Task Master intelligently organizes your tasks and priorities. Designed for creators and professionals who care about doing meaningful work effectively and sustainably.',
@@ -261,6 +266,7 @@ export const NEXFIY_APPS: NexfiyApp[] = [
   {
     id: 'pulse',
     name: 'Pulse',
+    icon: <PulseIcon />,
     tagline: 'Wellness Insights',
     description: 'Real-time wellness metrics and energy tracking.',
     fullDescription: 'Pulse provides real-time wellness monitoring with intelligent insights. Track energy levels, recovery, and overall vitality to optimize your daily performance and well-being.',

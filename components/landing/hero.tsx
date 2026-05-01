@@ -1,6 +1,7 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { ArrowRight } from 'lucide-react'
+import { NEXFIY_APPS } from '@/lib/apps-data'
 
 export function Hero() {
   const handleGetStarted = () => {
@@ -9,64 +10,65 @@ export function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden pt-20 md:pt-0">
-      {/* Subtle background accent */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-slate-100 rounded-full blur-3xl opacity-20 -mr-48 -mt-48" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-slate-100 rounded-full blur-3xl opacity-15 -ml-48 -mb-48" />
+    <section className="relative min-h-[95vh] flex items-center bg-background px-6 pt-32 pb-20 overflow-hidden">
+      
+      {/* Ultra-subtle Background Lighting */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10 flex items-center justify-center">
+        <div className="w-[1000px] h-[1000px] bg-foreground/[0.02] rounded-full blur-[140px]" />
       </div>
 
-      <div className="container mx-auto px-4 md:px-6 py-12 md:py-0">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          {/* Badge */}
-          <div className="inline-block px-4 py-2 rounded-full bg-secondary border border-border">
-            <span className="text-sm font-medium text-foreground">Built by one developer for quality</span>
-          </div>
+      <div className="container mx-auto max-w-5xl">
+        <div className="flex flex-col items-center">
+          
+          {/* Main Centered Content */}
+          <div className="w-full text-center z-10 flex flex-col items-center">
+            <div 
+              onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
+              className="inline-flex items-center gap-3 px-3 py-1.5 rounded-full bg-secondary/40 border border-border/30 mb-10 backdrop-blur-xl hover:bg-secondary/60 transition-colors cursor-pointer shadow-sm group" 
+            >
+              <img 
+                src="/me.jpg" 
+                alt="Ahmed Mansour" 
+                className="w-6 h-6 rounded-full object-cover border border-border/30"
+              />
+              <span className="text-[13px] font-medium text-foreground/70 pr-3 group-hover:text-foreground transition-colors">
+                Independently built by <span className="font-bold">Ahmed Mansour</span>
+              </span>
+            </div>
 
-          {/* Headline */}
-          <div className="space-y-6">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight tracking-tight text-balance">
-              Crafted by One Developer
+            <h1 className="text-6xl sm:text-7xl md:text-[6.5rem] lg:text-[7.5rem] font-bold text-foreground tracking-tighter leading-[0.95] mb-8 max-w-4xl mx-auto">
+              Health, focus,<br className="hidden sm:block" /> & productivity.
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed text-balance">
-              Premium apps for health, productivity, and focus. Built with meticulous care, designed for people who value quality over growth.
+            
+            <p className="text-xl sm:text-[22px] text-foreground/50 leading-relaxed font-light tracking-tight max-w-2xl mx-auto mb-12">
+              A suite of premium tools built with meticulous care for people who value quality over noise. No ads. No tracking. Just pure focus.
             </p>
-          </div>
 
-          {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center gap-8 pt-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-foreground">4.9★</div>
-              <p className="text-sm text-muted-foreground mt-1">App Rating</p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full max-w-md mx-auto">
+              <button 
+                onClick={handleGetStarted}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 h-[56px] px-10 rounded-full bg-foreground text-background text-[15px] font-bold hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl"
+              >
+                Explore Collection
+                <ArrowRight className="w-4 h-4 opacity-70" />
+              </button>
             </div>
-            <div className="hidden sm:block w-px h-16 bg-border" />
-            <div className="text-center">
-              <div className="text-4xl font-bold text-foreground">100K+</div>
-              <p className="text-sm text-muted-foreground mt-1">Active Users</p>
+            
+            {/* Ultra-Premium Metrics */}
+            <div className="flex flex-wrap justify-center gap-12 sm:gap-24 pt-16 mt-16 border-t border-border/30 w-full max-w-3xl">
+              <div>
+                <div className="text-[40px] font-bold text-foreground tracking-tighter leading-none mb-3">4.9<span className="text-foreground/30">★</span></div>
+                <div className="text-[12px] font-semibold uppercase text-foreground/40 tracking-[0.2em]">Avg Rating</div>
+              </div>
+              <div>
+                <div className="text-[40px] font-bold text-foreground tracking-tighter leading-none mb-3">100<span className="text-foreground/30">k</span></div>
+                <div className="text-[12px] font-semibold uppercase text-foreground/40 tracking-[0.2em]">Active Users</div>
+              </div>
+              <div>
+                <div className="text-[40px] font-bold text-foreground tracking-tighter leading-none mb-3">5</div>
+                <div className="text-[12px] font-semibold uppercase text-foreground/40 tracking-[0.2em]">Premium Apps</div>
+              </div>
             </div>
-            <div className="hidden sm:block w-px h-16 bg-border" />
-            <div className="text-center">
-              <div className="text-4xl font-bold text-foreground">5</div>
-              <p className="text-sm text-muted-foreground mt-1">Premium Apps</p>
-            </div>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-            <Button 
-              onClick={handleGetStarted}
-              size="lg" 
-              className="px-8 h-12 bg-foreground text-background hover:bg-foreground/90 font-semibold w-full sm:w-auto"
-            >
-              Explore All Apps
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="px-8 h-12 border-2 border-foreground text-foreground hover:bg-foreground/5 font-semibold w-full sm:w-auto"
-            >
-              About the Founder
-            </Button>
           </div>
         </div>
       </div>

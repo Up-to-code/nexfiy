@@ -6,77 +6,82 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-foreground text-background py-16 md:py-20">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+    <footer className="bg-background text-foreground py-16 md:py-20 border-t border-border">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
-          <div className="space-y-3">
-            <h3 className="text-xl font-bold">Nexfiy</h3>
-            <p className="text-sm text-background/80">
+          <div className="space-y-4">
+            <h3 className="text-sm font-medium tracking-wide">Nexfiy</h3>
+            <p className="text-sm text-foreground/60 leading-relaxed pr-4">
               Premium apps crafted by one developer with care and intention.
             </p>
           </div>
 
           {/* Product Links */}
-          <div className="space-y-3">
-            <h4 className="font-semibold text-sm uppercase tracking-wide">Apps</h4>
-            <ul className="space-y-2 text-sm">
+          <div className="space-y-4">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Apps</h4>
+            <ul className="space-y-3 text-sm">
               <li>
-                <a href="#apps" className="text-background/80 hover:text-background transition-colors">
+                <a href="#apps" className="text-foreground/70 hover:text-foreground transition-colors">
                   All Apps
                 </a>
               </li>
               <li>
-                <a href="#features" className="text-background/80 hover:text-background transition-colors">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="text-background/80 hover:text-background transition-colors">
-                  About Me
+                <a href="#about" className="text-foreground/70 hover:text-foreground transition-colors">
+                  About the Founder
                 </a>
               </li>
             </ul>
           </div>
 
           {/* Support Links */}
-          <div className="space-y-3">
-            <h4 className="font-semibold text-sm uppercase tracking-wide">Support</h4>
-            <ul className="space-y-2 text-sm">
+          <div className="space-y-4">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Support & Social</h4>
+            <ul className="space-y-3 text-sm">
               <li>
-                <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  Help Center
+                <a href="mailto:support@nexfiy.app" className="text-foreground/70 hover:text-foreground transition-colors">
+                  Contact Support
                 </a>
               </li>
               <li>
-                <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  Contact
+                <a href="https://x.com/uptocodejs" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors">
+                  X (Twitter)
                 </a>
               </li>
               <li>
-                <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  Feedback
+                <a href="https://github.com/Up-to-code" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors">
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tiktok.com/@e.nsan?lang=en" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors">
+                  TikTok
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/@edit_Pro_1" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground transition-colors">
+                  YouTube
                 </a>
               </li>
             </ul>
           </div>
 
           {/* Legal Links */}
-          <div className="space-y-3">
-            <h4 className="font-semibold text-sm uppercase tracking-wide">Legal</h4>
-            <ul className="space-y-2 text-sm">
+          <div className="space-y-4">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Legal</h4>
+            <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/privacy" className="text-background/80 hover:text-background transition-colors">
+                <Link href="/privacy" className="text-foreground/70 hover:text-foreground transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-background/80 hover:text-background transition-colors">
+                <Link href="/terms" className="text-foreground/70 hover:text-foreground transition-colors">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="/security" className="text-background/80 hover:text-background transition-colors">
+                <Link href="/security" className="text-foreground/70 hover:text-foreground transition-colors">
                   Security
                 </Link>
               </li>
@@ -85,9 +90,12 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-background/20 pt-8">
-          <p className="text-sm text-background/70 text-center">
-            © {currentYear} Nexfiy. Built with care and intention. Quality over growth.
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-foreground/50">
+            © {currentYear} Nexfiy. Built with care and intention.
+          </p>
+          <p className="text-xs text-foreground/50">
+            Quality over growth.
           </p>
         </div>
       </div>

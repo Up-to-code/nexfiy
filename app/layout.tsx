@@ -9,33 +9,60 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Nexfiy — Premium Apps Crafted by One Developer',
+  metadataBase: new URL('https://nexfiy.app'),
+  title: {
+    default: 'Nexfiy — Premium Apps Crafted by One Developer',
+    template: '%s | Nexfiy',
+  },
   description: 'Discover Nexfiy: premium health, productivity, and focus apps created by an independent developer. Experience quality over growth.',
   generator: 'v0.app',
-  keywords: 'health app, productivity, focus, wellness, independent developer, quality apps',
+  keywords: ['health app', 'productivity', 'focus', 'wellness', 'independent developer', 'quality apps'],
   authors: [{ name: 'Nexfiy', url: 'https://nexfiy.app' }],
+  creator: 'Nexfiy',
+  publisher: 'Nexfiy',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: [
+      { url: '/favicon_io/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon_io/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon_io/favicon.ico' },
+    ],
+    apple: [
+      { url: '/favicon_io/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        rel: 'manifest',
+        url: '/favicon_io/site.webmanifest',
       },
     ],
-    apple: '/apple-icon.png',
   },
   openGraph: {
     title: 'Nexfiy — Premium Apps Crafted by One Developer',
     description: 'Premium health, productivity, and focus apps created with care by an independent developer.',
-    type: 'website',
+    url: 'https://nexfiy.app',
+    siteName: 'Nexfiy',
+    images: [
+      {
+        url: '/brand/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Nexfiy Premium Apps',
+      },
+    ],
     locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nexfiy — Premium Apps Crafted by One Developer',
+    description: 'Premium health, productivity, and focus apps created with care by an independent developer.',
+    creator: '@nexfiy',
+    images: ['/brand/logo.png'],
   },
 }
 
@@ -46,7 +73,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-background">
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased relative min-h-screen">
+        {/* Subtle Background Lighting */}
+        <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-foreground/[0.03] via-background to-background pointer-events-none" />
         <Navbar />
         <Breadcrumbs />
         {children}
