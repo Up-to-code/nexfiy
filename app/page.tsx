@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import type { NexoraApp } from '@/lib/apps-data'
+import type { NexfiyApp } from '@/lib/apps-data.tsx'
 import { Hero } from '@/components/landing/hero'
 import { Intro } from '@/components/landing/intro'
 import { AppsShowcase } from '@/components/landing/apps-showcase'
@@ -12,10 +12,10 @@ import { Trust } from '@/components/landing/trust'
 import { Footer } from '@/components/landing/footer'
 
 export default function Home() {
-  const [selectedApp, setSelectedApp] = useState<NexoraApp | null>(null)
+  const [selectedApp, setSelectedApp] = useState<NexfiyApp | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const handleAppClick = (app: NexoraApp) => {
+  const handleAppClick = (app: NexfiyApp) => {
     setSelectedApp(app)
     setIsModalOpen(true)
   }

@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy - Nexora',
-  description: 'Nexora privacy policy and data protection information.',
+  title: 'Privacy Policy - Nexfiy',
+  description: 'Nexfiy privacy policy and data protection information. Your privacy and data security are paramount.',
 }
 
 export default function PrivacyPage() {
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="text-muted-foreground mt-2">
-            Last updated: January 2024
+            Last updated: May 2026
           </p>
         </div>
       </div>
@@ -33,8 +33,9 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Introduction</h2>
             <p className="text-foreground/70 leading-relaxed">
-              At Nexora, we take your privacy seriously. This Privacy Policy explains how we collect, use, 
-              disclose, and safeguard your information when you use our applications and services.
+              At Nexfiy, I take your privacy seriously. This Privacy Policy explains how I collect, use, 
+              disclose, and safeguard your information when you use my applications and services. Your data belongs 
+              to you—not to advertisers, not to data brokers, not to anyone but you.
             </p>
           </section>
 

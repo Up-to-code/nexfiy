@@ -5,8 +5,8 @@ import { Shield, Lock, Eye, AlertCircle } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Security - Nexora',
-  description: 'Nexora security practices, certifications, and data protection measures.',
+  title: 'Security - Nexfiy',
+  description: 'Nexfiy security practices, certifications, and data protection measures.',
 }
 
 export default function SecurityPage() {
@@ -24,7 +24,7 @@ export default function SecurityPage() {
             Security & Privacy
           </h1>
           <p className="text-muted-foreground mt-2">
-            Your security and privacy are our top priorities
+            Your security and privacy are my top priorities
           </p>
         </div>
       </div>
@@ -35,8 +35,9 @@ export default function SecurityPage() {
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-foreground mb-6">Security Overview</h2>
           <p className="text-foreground/70 leading-relaxed mb-4">
-            Nexora implements industry-leading security measures to protect your data. We employ 
-            multiple layers of security to ensure your information remains confidential and secure.
+            Nexfiy implements industry-leading security measures to protect your data. I employ 
+            multiple layers of security to ensure your information remains confidential and secure. Your trust 
+            is earned through transparent, verifiable security practices.
           </p>
         </section>
 

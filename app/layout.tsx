@@ -7,11 +7,11 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Nexora — Premium Apps for Health, Productivity & Focus',
-  description: 'Discover Nexora: a premium ecosystem of apps for health tracking, productivity, and focus. Build your best self with beautifully designed applications.',
+  title: 'Nexfiy — Premium Apps Crafted by One Developer',
+  description: 'Discover Nexfiy: premium health, productivity, and focus apps created by an independent developer. Experience quality over growth.',
   generator: 'v0.app',
-  keywords: 'health app, productivity, focus, wellness, mobile app, web app',
-  authors: [{ name: 'Nexora', url: 'https://nexora.app' }],
+  keywords: 'health app, productivity, focus, wellness, independent developer, quality apps',
+  authors: [{ name: 'Nexfiy', url: 'https://nexfiy.app' }],
   icons: {
     icon: [
       {
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     apple: '/apple-icon.png',
   },
   openGraph: {
-    title: 'Nexora — Premium Apps for Health, Productivity & Focus',
-    description: 'Discover a premium ecosystem of apps designed to help you be your best self.',
+    title: 'Nexfiy — Premium Apps Crafted by One Developer',
+    description: 'Premium health, productivity, and focus apps created with care by an independent developer.',
     type: 'website',
     locale: 'en_US',
   },

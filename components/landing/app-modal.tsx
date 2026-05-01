@@ -2,11 +2,10 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
-import type { NexoraApp } from '@/lib/apps-data'
-import { X } from 'lucide-react'
+import type { NexfiyApp } from '@/lib/apps-data.tsx'
 
 interface AppModalProps {
-  app: NexoraApp | null
+  app: NexfiyApp | null
   isOpen: boolean
   onClose: () => void
 }
@@ -18,13 +17,13 @@ export function AppModal({ app, isOpen, onClose }: AppModalProps) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-background border-border">
         <DialogHeader>
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-4">
-              <div className="text-5xl">{app.icon}</div>
-              <div>
-                <DialogTitle className="text-3xl">{app.name}</DialogTitle>
-                <p className="text-sm text-muted-foreground mt-1">{app.category.charAt(0).toUpperCase() + app.category.slice(1)}</p>
-              </div>
+          <div className="flex items-start gap-4">
+            <div className="flex-shrink-0">
+              {app.icon}
+            </div>
+            <div className="flex-1">
+              <DialogTitle className="text-3xl mb-1">{app.name}</DialogTitle>
+              <p className="text-sm text-muted-foreground">{app.tagline}</p>
             </div>
           </div>
         </DialogHeader>
@@ -32,7 +31,7 @@ export function AppModal({ app, isOpen, onClose }: AppModalProps) {
         <div className="space-y-6 py-6">
           {/* Description */}
           <div>
-            <h3 className="text-sm font-semibold text-foreground mb-2">About</h3>
+            <h3 className="text-sm font-semibold text-foreground mb-3">About</h3>
             <p className="text-foreground/70 leading-relaxed">{app.fullDescription}</p>
           </div>
 
@@ -40,8 +39,8 @@ export function AppModal({ app, isOpen, onClose }: AppModalProps) {
           <div>
             <h3 className="text-sm font-semibold text-foreground mb-3">Key Features</h3>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {app.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-3">
+              {app.features.map((feature, idx) => (
+                <li key={idx} className="flex items-start gap-3">
                   <span className="text-foreground font-bold mt-0.5">✓</span>
                   <span className="text-foreground/70">{feature}</span>
                 </li>
@@ -69,7 +68,7 @@ export function AppModal({ app, isOpen, onClose }: AppModalProps) {
             <Button 
               className="w-full bg-foreground text-background hover:bg-foreground/90 font-semibold h-11"
             >
-              Get {app.name}
+              Explore {app.name}
             </Button>
           </div>
         </div>

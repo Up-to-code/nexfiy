@@ -2,29 +2,29 @@
 
 export function Intro() {
   return (
-    <section className="py-16 md:py-20 bg-background">
+    <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="max-w-2xl mx-auto text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-            About Nexora
+        <div className="max-w-3xl mx-auto text-center space-y-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
+            What is Nexfiy?
           </h2>
           
-          <div className="space-y-4 text-foreground/70 leading-relaxed text-lg">
+          <div className="space-y-6 text-foreground/70 leading-relaxed text-lg">
             <p>
-              Nexora is a next-generation application ecosystem designed for modern health-conscious, 
-              productivity-focused individuals. We believe that true well-being comes from the intersection 
-              of physical health, mental clarity, and productive output.
+              Nexfiy is a collection of premium applications built by one independent developer with an 
+              unwavering commitment to quality. Rather than chasing growth, I focus on crafting experiences 
+              that are intuitive, powerful, and genuinely useful.
             </p>
             
             <p>
-              Our mission is to create the finest-quality applications that empower you to build your 
-              best self. Each app in our ecosystem is carefully crafted with premium design, powerful features, 
-              and a relentless focus on user experience.
+              Each app addresses a specific need: tracking your health, maintaining deep focus, finding 
+              inner peace, managing tasks, and understanding your wellness. They work seamlessly together, 
+              creating a cohesive ecosystem for your personal well-being.
             </p>
 
             <p>
-              With Nexora, you're not just using apps—you're investing in a holistic platform 
-              that understands your journey toward excellence.
+              Built with privacy first, designed with care, and maintained by someone who genuinely cares 
+              about the experience. This is quality over growth.
             </p>
           </div>
         </div>

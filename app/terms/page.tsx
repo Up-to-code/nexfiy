@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Terms of Service - Nexora',
-  description: 'Nexora terms of service and conditions of use.',
+  title: 'Terms of Service - Nexfiy',
+  description: 'Nexfiy terms of service and conditions of use.',
 }
 
 export default function TermsPage() {
@@ -22,7 +22,7 @@ export default function TermsPage() {
             Terms of Service
           </h1>
           <p className="text-muted-foreground mt-2">
-            Last updated: January 2024
+            Last updated: May 2026
           </p>
         </div>
       </div>
@@ -33,9 +33,9 @@ export default function TermsPage() {
           <section>
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Acceptance of Terms</h2>
             <p className="text-foreground/70 leading-relaxed">
-              By accessing and using Nexora applications and services, you accept and agree to be bound by 
-              the terms and provision of this agreement. If you do not agree to abide by the above, 
-              please do not use this service.
+              By accessing and using Nexfiy applications and services, you accept and agree to be bound by 
+              the terms and provision of this agreement. I've kept these terms simple and fair—no hidden clauses, 
+              no corporate legalese. If you do not agree to abide by the above, please do not use this service.
             </p>
           </section>
 

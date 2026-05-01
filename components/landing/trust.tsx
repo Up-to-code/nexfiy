@@ -1,7 +1,7 @@
 'use client'
 
 import { Card } from '@/components/ui/card'
-import { Shield, Lock, Eye, Server } from 'lucide-react'
+import { Shield, Lock, Eye, Heart } from 'lucide-react'
 
 export function Trust() {
   return (
@@ -10,44 +10,44 @@ export function Trust() {
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-tight">
-            Trust & Security
+            Privacy & Security
           </h2>
           <p className="text-lg text-muted-foreground">
-            Enterprise-grade security and privacy for your peace of mind
+            Your trust is paramount. Your data is protected.
           </p>
         </div>
 
         {/* Trust Items */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
-          <Card className="p-8 bg-background border border-border">
+          <Card className="p-8 bg-background border border-border hover:shadow-lg transition-shadow">
             <div className="flex items-start gap-4">
               <Shield className="w-8 h-8 text-foreground flex-shrink-0 mt-1" />
               <div>
                 <h3 className="text-xl font-bold text-foreground mb-2">
-                  Bank-Level Encryption
+                  End-to-End Encrypted
                 </h3>
                 <p className="text-foreground/70">
-                  All data is encrypted in transit and at rest using industry-standard AES-256 encryption.
+                  Your sensitive data is encrypted with AES-256. Even I cannot see it without your key.
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-8 bg-background border border-border">
+          <Card className="p-8 bg-background border border-border hover:shadow-lg transition-shadow">
             <div className="flex items-start gap-4">
               <Lock className="w-8 h-8 text-foreground flex-shrink-0 mt-1" />
               <div>
                 <h3 className="text-xl font-bold text-foreground mb-2">
-                  Secure Infrastructure
+                  No Tracking
                 </h3>
                 <p className="text-foreground/70">
-                  Hosted on SOC 2 Type II compliant servers with continuous security monitoring.
+                  No analytics cookies, no user tracking, no behavioral data collection. Period.
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-8 bg-background border border-border">
+          <Card className="p-8 bg-background border border-border hover:shadow-lg transition-shadow">
             <div className="flex items-start gap-4">
               <Eye className="w-8 h-8 text-foreground flex-shrink-0 mt-1" />
               <div>
@@ -55,48 +55,48 @@ export function Trust() {
                   Privacy First
                 </h3>
                 <p className="text-foreground/70">
-                  We never sell your data, share it with advertisers, or use it for any purpose you don't authorize.
+                  Your data is never sold, shared with third parties, or used for advertising purposes.
                 </p>
               </div>
             </div>
           </Card>
 
-          <Card className="p-8 bg-background border border-border">
+          <Card className="p-8 bg-background border border-border hover:shadow-lg transition-shadow">
             <div className="flex items-start gap-4">
-              <Server className="w-8 h-8 text-foreground flex-shrink-0 mt-1" />
+              <Heart className="w-8 h-8 text-foreground flex-shrink-0 mt-1" />
               <div>
                 <h3 className="text-xl font-bold text-foreground mb-2">
-                  Regular Audits
+                  Made with Care
                 </h3>
                 <p className="text-foreground/70">
-                  Third-party security audits and penetration testing ensure our systems are always secure.
+                  Built by someone who respects privacy and puts users first. Not an algorithm.
                 </p>
               </div>
             </div>
           </Card>
         </div>
 
-        {/* Certifications */}
+        {/* Compliance */}
         <div className="bg-background border border-border rounded-lg p-8 text-center max-w-2xl mx-auto">
           <p className="text-sm text-muted-foreground mb-6">
-            Trusted and Certified By
+            Built with Standards in Mind
           </p>
           <div className="flex justify-center items-center gap-8 flex-wrap">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-foreground">SOC 2</div>
-              <p className="text-xs text-muted-foreground mt-1">Type II Compliant</p>
-            </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-foreground">GDPR</div>
               <p className="text-xs text-muted-foreground mt-1">Compliant</p>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-foreground">ISO 27001</div>
-              <p className="text-xs text-muted-foreground mt-1">Certified</p>
+              <div className="text-2xl font-bold text-foreground">CCPA</div>
+              <p className="text-xs text-muted-foreground mt-1">Compliant</p>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-foreground">SOC 2</div>
+              <p className="text-xs text-muted-foreground mt-1">Type II</p>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold text-foreground">HIPAA</div>
-              <p className="text-xs text-muted-foreground mt-1">Compliant</p>
+              <p className="text-xs text-muted-foreground mt-1">Ready</p>
             </div>
           </div>
         </div>

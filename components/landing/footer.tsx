@@ -11,19 +11,19 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="space-y-3">
-            <h3 className="text-xl font-bold">Nexora</h3>
+            <h3 className="text-xl font-bold">Nexfiy</h3>
             <p className="text-sm text-background/80">
-              Premium applications for health, productivity, and focus.
+              Premium apps crafted by one developer with care and intention.
             </p>
           </div>
 
           {/* Product Links */}
           <div className="space-y-3">
-            <h4 className="font-semibold text-sm uppercase tracking-wide">Product</h4>
+            <h4 className="font-semibold text-sm uppercase tracking-wide">Apps</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="#apps" className="text-background/80 hover:text-background transition-colors">
-                  Apps
+                  All Apps
                 </a>
               </li>
               <li>
@@ -32,30 +32,30 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  Pricing
+                <a href="#about" className="text-background/80 hover:text-background transition-colors">
+                  About Me
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Company Links */}
+          {/* Support Links */}
           <div className="space-y-3">
-            <h4 className="font-semibold text-sm uppercase tracking-wide">Company</h4>
+            <h4 className="font-semibold text-sm uppercase tracking-wide">Support</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#about" className="text-background/80 hover:text-background transition-colors">
-                  About
+                <a href="#" className="text-background/80 hover:text-background transition-colors">
+                  Help Center
                 </a>
               </li>
               <li>
                 <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  Blog
+                  Contact
                 </a>
               </li>
               <li>
                 <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  Careers
+                  Feedback
                 </a>
               </li>
             </ul>
@@ -87,7 +87,7 @@ export function Footer() {
         {/* Divider */}
         <div className="border-t border-background/20 pt-8">
           <p className="text-sm text-background/70 text-center">
-            © {currentYear} Nexora. All rights reserved. | Made with precision and care.
+            © {currentYear} Nexfiy. Built with care and intention. Quality over growth.
           </p>
         </div>
       </div>
