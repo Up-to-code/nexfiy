@@ -11,19 +11,27 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL('https://nexfiy.app'),
   title: {
-    default: 'Nexfiy — Premium Apps Crafted by One Developer',
+    default: 'Nexfiy — Premium Apps Crafted by Ahmed Mansour',
     template: '%s | Nexfiy',
   },
-  description: 'Discover Nexfiy: premium health, productivity, and focus apps created by an independent developer. Experience quality over growth.',
+  description: 'Discover Nexfiy: a collection of premium health, productivity, and focus apps built with meticulous care by Ahmed Mansour. Quality, privacy, and craftsmanship over growth.',
   generator: 'v0.app',
-  keywords: ['health app', 'productivity', 'focus', 'wellness', 'independent developer', 'quality apps'],
-  authors: [{ name: 'Nexfiy', url: 'https://nexfiy.app' }],
-  creator: 'Nexfiy',
-  publisher: 'Nexfiy',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
+  keywords: ['health app', 'productivity tools', 'focus apps', 'wellness', 'independent developer', 'Ahmed Mansour', 'Nexfiy', 'iOS apps', 'macOS apps'],
+  authors: [{ name: 'Ahmed Mansour', url: 'https://github.com/Up-to-code' }],
+  creator: 'Ahmed Mansour',
+  publisher: 'Ahmed Mansour',
+  category: 'Productivity',
+  classification: 'Health & Productivity',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   icons: {
     icon: [
@@ -42,8 +50,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'Nexfiy — Premium Apps Crafted by One Developer',
-    description: 'Premium health, productivity, and focus apps created with care by an independent developer.',
+    title: 'Nexfiy — Premium Apps Crafted by Ahmed Mansour',
+    description: 'High-quality health, productivity, and focus tools created with care by independent developer Ahmed Mansour.',
     url: 'https://nexfiy.app',
     siteName: 'Nexfiy',
     images: [
@@ -51,7 +59,7 @@ export const metadata: Metadata = {
         url: '/brand/logo.png',
         width: 1200,
         height: 630,
-        alt: 'Nexfiy Premium Apps',
+        alt: 'Nexfiy — Premium Apps by Ahmed Mansour',
       },
     ],
     locale: 'en_US',
@@ -59,10 +67,21 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Nexfiy — Premium Apps Crafted by One Developer',
-    description: 'Premium health, productivity, and focus apps created with care by an independent developer.',
-    creator: '@nexfiy',
+    title: 'Nexfiy — Premium Apps Crafted by Ahmed Mansour',
+    description: 'High-quality health, productivity, and focus tools created with care by independent developer Ahmed Mansour.',
+    creator: '@uptocodejs',
     images: ['/brand/logo.png'],
+  },
+  verification: {
+    google: 'google-site-verification-id',
+  },
+  appleWebApp: {
+    capable: true,
+    title: 'Nexfiy',
+    statusBarStyle: 'default',
+  },
+  formatDetection: {
+    telephone: false,
   },
 }
 

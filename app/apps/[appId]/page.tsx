@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { NEXFIY_APPS } from '@/lib/apps-data'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -9,14 +10,34 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ appId: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ appId: string }> }): Promise<Metadata> {
   const resolvedParams = await params
   const app = NEXFIY_APPS.find((a) => a.id === resolvedParams.appId)
   if (!app) return {}
 
+  const ogImage = `/images/app-${app.id}.jpg`
+
   return {
     title: `${app.name} - Nexfiy`,
-    description: app.fullDescription,
+    description: app.tagline,
+    openGraph: {
+      title: `${app.name} — Premium iOS & macOS App`,
+      description: app.tagline,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${app.name} App Screenshot`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${app.name} — Premium iOS & macOS App`,
+      description: app.tagline,
+      images: [ogImage],
+    },
   }
 }
 
