@@ -339,63 +339,81 @@ export default function AppPage({ params }: { params: { appId: string } }) {
       {/* Contact Us - Founder Section */}
       <section className="py-20 md:py-32 bg-secondary/20">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold text-foreground mb-4 text-center">Questions About {app.name}?</h2>
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold text-foreground mb-4 text-center">Meet the Builder</h2>
             <p className="text-center text-foreground/70 mb-12">
-              Have feedback, questions, or need support? Reach out directly to our founder and the team building this app.
+              {app.name} is built by a founder dedicated to creating meaningful digital experiences.
             </p>
             
             <Card className="p-10 md:p-14 bg-background border-2 border-foreground/20">
-              <div className="text-center mb-10">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 mx-auto mb-4 flex items-center justify-center text-4xl">
+              <div className="mb-12">
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 mx-auto mb-6 flex items-center justify-center text-4xl">
                   👤
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-2">
-                  Direct Contact
-                </h3>
-                <p className="text-foreground/70 mb-6">
-                  Founded and maintained by an independent developer who genuinely cares about your experience.
-                </p>
+                <div className="text-center mb-10">
+                  <h3 className="text-2xl font-bold text-foreground mb-3">
+                    Founder & Product Creator
+                  </h3>
+                  <p className="text-foreground/80 leading-relaxed mb-6">
+                    I'm a builder focused on creating simple, meaningful digital experiences. As a co-founder and product creator, my work sits at the intersection of health, focus, and productivity.
+                  </p>
+                  <p className="text-foreground/80 leading-relaxed mb-6">
+                    I believe technology should support people—not distract them. That's why I design apps that help users think clearly, stay consistent, and take better care of themselves in a fast-moving world.
+                  </p>
+                </div>
+
+                <div className="space-y-3 p-6 bg-secondary/30 rounded-lg mb-10 border border-foreground/10">
+                  <h4 className="font-bold text-foreground mb-4">Vision</h4>
+                  <p className="text-sm text-foreground/80 leading-relaxed mb-3">
+                    My vision is to build a focused ecosystem of tools that improve daily life—quietly but effectively.
+                  </p>
+                  <p className="text-sm text-foreground/80 leading-relaxed">
+                    In a world full of distractions, I'm interested in creating technology that feels calm, intentional, and genuinely useful.
+                  </p>
+                </div>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 p-4 bg-secondary/40 rounded-lg">
-                  <Mail className="w-6 h-6 text-foreground flex-shrink-0" />
-                  <div className="flex-1">
-                    <p className="text-sm text-foreground/70">Email Support</p>
-                    <a href="mailto:support@nexfiy.app" className="text-foreground font-semibold hover:underline">
-                      support@nexfiy.app
-                    </a>
+              <div className="border-t border-foreground/10 pt-10">
+                <h4 className="text-lg font-bold text-foreground mb-6 text-center">Get in Touch</h4>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4 p-4 bg-secondary/40 rounded-lg hover:bg-secondary/60 transition-colors">
+                    <Mail className="w-6 h-6 text-foreground flex-shrink-0" />
+                    <div className="flex-1">
+                      <p className="text-sm text-foreground/70">Email Support</p>
+                      <a href="mailto:support@nexfiy.app" className="text-foreground font-semibold hover:underline">
+                        support@nexfiy.app
+                      </a>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-center gap-4 p-4 bg-secondary/40 rounded-lg">
-                  <Twitter className="w-6 h-6 text-foreground flex-shrink-0" />
-                  <div className="flex-1">
-                    <p className="text-sm text-foreground/70">Twitter / X</p>
-                    <a href="https://twitter.com/nexfiy" target="_blank" rel="noopener noreferrer" className="text-foreground font-semibold hover:underline">
-                      @nexfiy
-                    </a>
+                  <div className="flex items-center gap-4 p-4 bg-secondary/40 rounded-lg hover:bg-secondary/60 transition-colors">
+                    <Twitter className="w-6 h-6 text-foreground flex-shrink-0" />
+                    <div className="flex-1">
+                      <p className="text-sm text-foreground/70">Twitter / X</p>
+                      <a href="https://twitter.com/nexfiy" target="_blank" rel="noopener noreferrer" className="text-foreground font-semibold hover:underline">
+                        @nexfiy
+                      </a>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-center gap-4 p-4 bg-secondary/40 rounded-lg">
-                  <Linkedin className="w-6 h-6 text-foreground flex-shrink-0" />
-                  <div className="flex-1">
-                    <p className="text-sm text-foreground/70">LinkedIn</p>
-                    <a href="https://linkedin.com/company/nexfiy" target="_blank" rel="noopener noreferrer" className="text-foreground font-semibold hover:underline">
-                      Nexfiy Team
-                    </a>
+                  <div className="flex items-center gap-4 p-4 bg-secondary/40 rounded-lg hover:bg-secondary/60 transition-colors">
+                    <Linkedin className="w-6 h-6 text-foreground flex-shrink-0" />
+                    <div className="flex-1">
+                      <p className="text-sm text-foreground/70">LinkedIn</p>
+                      <a href="https://linkedin.com/company/nexfiy" target="_blank" rel="noopener noreferrer" className="text-foreground font-semibold hover:underline">
+                        Nexfiy Team
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div className="mt-10 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-foreground/10">
                 <p className="text-sm text-foreground/80 mb-4">
-                  <strong>Response Time:</strong> Most inquiries are answered within 24 hours during business days.
+                  <strong>Response Time:</strong> Most inquiries are answered within 24 hours. I personally read and respond to messages.
                 </p>
                 <Button asChild className="w-full">
-                  <a href="mailto:support@nexfiy.app">Send us a Message</a>
+                  <a href="mailto:support@nexfiy.app">Send a Message</a>
                 </Button>
               </div>
             </Card>
