@@ -13,7 +13,7 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="text-sm font-medium tracking-wide">Nexfiy</h3>
             <p className="text-sm text-foreground/60 leading-relaxed pr-4">
-              Premium apps crafted by one developer with care and intention.
+              This website is right for apps. Premium apps crafted by one developer with care and intention.
             </p>
           </div>
 
@@ -39,7 +39,7 @@ export function Footer() {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground/50">Support & Social</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="mailto:support@nexfiy.app" className="text-foreground/70 hover:text-foreground transition-colors">
+                <a href="mailto:uptocodejs@gmail.com" className="text-foreground/70 hover:text-foreground transition-colors">
                   Contact Support
                 </a>
               </li>

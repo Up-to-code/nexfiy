@@ -4,50 +4,30 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Download, ExternalLink } from 'lucide-react'
 
-export async function generateStaticParams() {
-  return NEXFIY_APPS.map((app) => ({
-    appId: app.id,
-  }))
+type Props = {
+  params: Promise<{ appId: string; subId: string }>
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ appId: string }> }): Promise<Metadata> {
-  const resolvedParams = await params
-  const app = NEXFIY_APPS.find((a) => a.id === resolvedParams.appId)
-  if (!app) return {}
-
-  const ogImage = `/images/app-${app.id}.jpg`
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { appId } = await params
+  const app = NEXFIY_APPS.find((a) => a.id === appId)
+  if (!app) return { title: 'App Not Found' }
 
   return {
     title: `${app.name} - Nexfiy`,
-    description: app.tagline,
-    openGraph: {
-      title: `${app.name} — Premium iOS & macOS App`,
-      description: app.tagline,
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: `${app.name} App Screenshot`,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: `${app.name} — Premium iOS & macOS App`,
-      description: app.tagline,
-      images: [ogImage],
-    },
+    description: app.description,
   }
 }
 
-export default async function AppPage({ params }: { params: Promise<{ appId: string }> }) {
-  const resolvedParams = await params
-  const app = NEXFIY_APPS.find((a) => a.id === resolvedParams.appId)
+export default async function AppPage({ params }: Props) {
+  const { appId } = await params
+  const app = NEXFIY_APPS.find((a) => a.id === appId)
 
   if (!app) {
     notFound()
   }
+
+  const hasMetrics = app.rating > 0 || (app.downloads && app.downloads !== '') || app.reviews > 0
 
   return (
     <main className="min-h-screen bg-background text-foreground font-sans selection:bg-foreground selection:text-background pb-24">
@@ -57,8 +37,8 @@ export default async function AppPage({ params }: { params: Promise<{ appId: str
         <header className="mb-16">
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-start mb-10">
             {/* Squircle Icon */}
-            <div className="w-28 h-28 sm:w-[132px] sm:h-[132px] flex-shrink-0 flex items-center justify-center rounded-[28px] sm:rounded-[32px] bg-background border border-border/50 shadow-md">
-              <div className="scale-125 sm:scale-150">
+            <div className="w-28 h-28 sm:w-[132px] sm:h-[132px] flex-shrink-0 flex items-center justify-center rounded-[28px] sm:rounded-[32px] bg-background border border-border/50 shadow-md overflow-hidden">
+              <div className="w-full h-full p-2 sm:p-3">
                 {app.icon}
               </div>
             </div>
@@ -79,16 +59,6 @@ export default async function AppPage({ params }: { params: Promise<{ appId: str
                       GET
                     </a>
                  )}
-                 {app.platforms.includes('macOS') && (
-                    <a href="https://apps.apple.com/mac" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-8 sm:h-9 px-6 rounded-full bg-secondary text-foreground text-[15px] font-bold hover:bg-secondary/70 transition-colors">
-                      MAC
-                    </a>
-                 )}
-                 {app.platforms.includes('Android') && (
-                    <a href="https://play.google.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center h-8 sm:h-9 px-6 rounded-full bg-secondary text-foreground text-[15px] font-bold hover:bg-secondary/70 transition-colors">
-                      ANDROID
-                    </a>
-                 )}
                  {app.platforms.includes('Web') && (
                     <a href="https://app.nexfiy.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-1.5 h-8 sm:h-9 px-5 rounded-full bg-secondary text-foreground text-[15px] font-bold hover:bg-secondary/70 transition-colors">
                       WEB <ExternalLink className="w-3.5 h-3.5" />
@@ -98,22 +68,32 @@ export default async function AppPage({ params }: { params: Promise<{ appId: str
             </div>
           </div>
           
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-4 py-4 border-y border-border/50 text-[13px] text-foreground/50 font-medium uppercase tracking-wide">
-            <span className="flex flex-col items-start gap-1">
-              <span className="text-foreground text-[17px] tracking-tight">{app.rating} ★</span>
-              {app.reviews.toLocaleString()} Ratings
-            </span>
-            <div className="w-px h-8 bg-border/50" />
-            <span className="flex flex-col items-start gap-1">
-              <span className="text-foreground text-[17px] tracking-tight">#{app.downloads}</span>
-              Downloads
-            </span>
-            <div className="w-px h-8 bg-border/50" />
-            <span className="flex flex-col items-start gap-1">
-              <span className="text-foreground text-[17px] tracking-tight">v{app.version}</span>
-              Version
-            </span>
-          </div>
+          {hasMetrics && (
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 py-4 border-y border-border/50 text-[13px] text-foreground/50 font-medium uppercase tracking-wide">
+              {app.rating > 0 && (
+                <>
+                  <span className="flex flex-col items-start gap-1">
+                    <span className="text-foreground text-[17px] tracking-tight">{app.rating} ★</span>
+                    {app.reviews.toLocaleString()} Ratings
+                  </span>
+                  <div className="w-px h-8 bg-border/50" />
+                </>
+              )}
+              {app.downloads && app.downloads !== '' && (
+                <>
+                  <span className="flex flex-col items-start gap-1">
+                    <span className="text-foreground text-[17px] tracking-tight">{app.downloads}</span>
+                    Downloads
+                  </span>
+                  <div className="w-px h-8 bg-border/50" />
+                </>
+              )}
+              <span className="flex flex-col items-start gap-1">
+                <span className="text-foreground text-[17px] tracking-tight">v{app.version}</span>
+                Version
+              </span>
+            </div>
+          )}
         </header>
 
         {/* Description */}
@@ -122,6 +102,18 @@ export default async function AppPage({ params }: { params: Promise<{ appId: str
           <p className="text-[17px] leading-relaxed text-foreground/80">
             {app.longDescription}
           </p>
+        </section>
+
+        {/* Screenshots Gallery */}
+        <section className="mb-16">
+          <h2 className="text-xl font-bold tracking-tight text-foreground mb-4">Screenshots</h2>
+          <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar -mx-6 px-6 md:mx-0 md:px-0">
+            {app.screenshots.map((src, idx) => (
+              <div key={idx} className="w-[240px] sm:w-[280px] aspect-[9/19.5] flex-shrink-0 rounded-[22px] overflow-hidden border border-border/50 bg-secondary/30 shadow-sm">
+                <img src={src} alt={`${app.name} Screenshot ${idx + 1}`} className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Features Section - Apple Grouped List */}
@@ -147,9 +139,9 @@ export default async function AppPage({ params }: { params: Promise<{ appId: str
            <h2 className="text-xl font-bold tracking-tight text-foreground mb-4">Developer</h2>
            <div className="bg-secondary/30 rounded-[22px] overflow-hidden border border-border/50 p-6">
              <p className="text-[15px] text-foreground/80 leading-relaxed mb-4">
-               {app.name} is designed and built by a founder focused on creating calm, intentional, and meaningful digital experiences. Technology should support you, not distract you.
+               {app.name} is designed and built by Ahmed Mansour, an independent developer focused on creating calm, intentional, and meaningful digital experiences. Technology should support you, not distract you.
              </p>
-             <a href="mailto:support@nexfiy.app" className="inline-flex items-center justify-center h-9 px-5 rounded-full bg-background border border-border/50 text-[15px] font-semibold text-foreground hover:bg-secondary/50 transition-colors">
+             <a href="mailto:uptocodejs@gmail.com" className="inline-flex items-center justify-center h-9 px-5 rounded-full bg-background border border-border/50 text-[15px] font-semibold text-foreground hover:bg-secondary/50 transition-colors">
                Contact Support
              </a>
            </div>
@@ -158,8 +150,8 @@ export default async function AppPage({ params }: { params: Promise<{ appId: str
         {/* Footer Links */}
         <footer className="pt-8 border-t border-border/50">
           <div className="flex flex-wrap gap-x-6 gap-y-4 text-[13px] text-foreground/50 font-medium">
-            <Link href={`/apps/${app.id}/privacy`} className="hover:text-foreground transition-colors">Privacy Policy</Link>
-            <Link href={`/apps/${app.id}/security`} className="hover:text-foreground transition-colors">Security</Link>
+            <Link href={`/${app.id}/${app.id}/privacy`} className="hover:text-foreground transition-colors">Privacy Policy</Link>
+            <Link href={`/${app.id}/${app.id}/terms`} className="hover:text-foreground transition-colors">Terms of Service</Link>
             <a href="https://www.apple.com/legal/privacy/products/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Apple Legal</a>
             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">Google Legal</a>
           </div>

@@ -12,35 +12,17 @@ import { Trust } from '@/components/landing/trust'
 import { Footer } from '@/components/landing/footer'
 
 export default function Home() {
-  const [selectedApp, setSelectedApp] = useState<NexfiyApp | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const handleAppClick = (app: NexfiyApp) => {
-    setSelectedApp(app)
-    setIsModalOpen(true)
-  }
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false)
-  }
-
   return (
     <main className="min-h-screen bg-background">
       <Hero />
       <Intro />
-      <AppsShowcase onAppClick={handleAppClick} />
+      <AppsShowcase onAppClick={() => {}} />
       <Features />
       <div id="about">
         <About />
       </div>
       <Trust />
       <Footer />
-      
-      <AppModal 
-        app={selectedApp} 
-        isOpen={isModalOpen} 
-        onClose={handleCloseModal} 
-      />
     </main>
   )
 }

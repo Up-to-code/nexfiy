@@ -110,7 +110,7 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-bold text-foreground mb-4">8. Contact Us</h2>
             <p className="text-foreground/70 leading-relaxed">
               If you have any questions about this Privacy Policy, please contact us at 
-              <span className="font-semibold"> privacy@nexora.app</span>
+              <span className="font-semibold"> uptocodejs@gmail.com</span>
             </p>
           </section>
         </div>

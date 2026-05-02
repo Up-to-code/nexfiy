@@ -9,7 +9,7 @@ export function Navbar() {
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/apps', label: 'Apps' },
+    { href: '/push-counter/push-counter', label: 'Push Counter' },
     { href: '/services', label: 'Services' },
     { href: '/contact', label: 'Contact' },
   ]

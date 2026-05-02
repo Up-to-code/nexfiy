@@ -36,12 +36,16 @@ export function Hero() {
               </span>
             </div>
 
+            <div className="text-[13px] font-bold uppercase tracking-[0.3em] text-foreground/30 mb-6">
+              This website is right for apps.
+            </div>
+
             <h1 className="text-6xl sm:text-7xl md:text-[6.5rem] lg:text-[7.5rem] font-bold text-foreground tracking-tighter leading-[0.95] mb-8 max-w-4xl mx-auto">
-              Health, focus,<br className="hidden sm:block" /> & productivity.
+              Master your<br className="hidden sm:block" /> movement.
             </h1>
             
             <p className="text-xl sm:text-[22px] text-foreground/50 leading-relaxed font-light tracking-tight max-w-2xl mx-auto mb-12">
-              A suite of premium tools built with meticulous care for people who value quality over noise. No ads. No tracking. Just pure focus.
+              The first in a series of intentional tools built for people who value quality over noise. No ads. No tracking. Just pure focus.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full max-w-md mx-auto">
@@ -57,16 +61,16 @@ export function Hero() {
             {/* Ultra-Premium Metrics */}
             <div className="flex flex-wrap justify-center gap-12 sm:gap-24 pt-16 mt-16 border-t border-border/30 w-full max-w-3xl">
               <div>
-                <div className="text-[40px] font-bold text-foreground tracking-tighter leading-none mb-3">4.9<span className="text-foreground/30">★</span></div>
-                <div className="text-[12px] font-semibold uppercase text-foreground/40 tracking-[0.2em]">Avg Rating</div>
+                <div className="text-[40px] font-bold text-foreground tracking-tighter leading-none mb-3">0.0<span className="text-foreground/30">★</span></div>
+                <div className="text-[12px] font-semibold uppercase text-foreground/40 tracking-[0.2em]">Rating</div>
               </div>
               <div>
-                <div className="text-[40px] font-bold text-foreground tracking-tighter leading-none mb-3">100<span className="text-foreground/30">k</span></div>
+                <div className="text-[40px] font-bold text-foreground tracking-tighter leading-none mb-3">0<span className="text-foreground/30">+</span></div>
                 <div className="text-[12px] font-semibold uppercase text-foreground/40 tracking-[0.2em]">Active Users</div>
               </div>
               <div>
-                <div className="text-[40px] font-bold text-foreground tracking-tighter leading-none mb-3">5</div>
-                <div className="text-[12px] font-semibold uppercase text-foreground/40 tracking-[0.2em]">Premium Apps</div>
+                <div className="text-[40px] font-bold text-foreground tracking-tighter leading-none mb-3">{NEXFIY_APPS.length}</div>
+                <div className="text-[12px] font-semibold uppercase text-foreground/40 tracking-[0.2em]">Premium App{NEXFIY_APPS.length > 1 ? 's' : ''}</div>
               </div>
             </div>
           </div>

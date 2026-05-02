@@ -15,10 +15,10 @@ export function AppsShowcase({ onAppClick }: AppsShowcaseProps) {
         {/* Header */}
         <div className="max-w-4xl">
           <h2 className="text-sm font-semibold uppercase tracking-wider text-foreground/50 mb-4">
-            The Collection
+            The Debut
           </h2>
           <p className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight max-w-2xl">
-            Infinite possibilities. Explore premium applications designed for your workflow.
+            Introducing Vio. The first in a collection of high-precision tools for intentional living.
           </p>
         </div>
       </div>
@@ -30,14 +30,12 @@ export function AppsShowcase({ onAppClick }: AppsShowcaseProps) {
             <div 
               key={`${app.id}-${idx}`}
               className="w-[280px] sm:w-[340px] group cursor-pointer flex flex-col p-6 rounded-[28px] bg-secondary/30 hover:bg-secondary/60 border border-border/50 shadow-sm transition-colors flex-shrink-0"
-              onClick={() => onAppClick(app)}
+              onClick={() => window.location.href = `/${app.id}/${app.id}`}
             >
               <div className="flex items-center gap-5 mb-5">
                 {/* Icon with Apple-like squircle appearance and shadow */}
-                <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 flex items-center justify-center rounded-[16px] sm:rounded-[18px] bg-background border border-border/50 shadow-sm group-hover:shadow-md transition-all">
-                  <div className="scale-75">
-                    {app.icon}
-                  </div>
+                <div className="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 flex items-center justify-center rounded-[16px] sm:rounded-[18px] bg-background border border-border/50 shadow-sm group-hover:shadow-md transition-all overflow-hidden p-1.5 sm:p-2">
+                  {app.icon}
                 </div>
 
                 {/* Content Stack */}

@@ -12,7 +12,7 @@ export function Intro() {
           
           <div className="space-y-8 text-2xl md:text-3xl text-foreground font-light leading-snug tracking-tight">
             <p>
-              Nexfiy is a collection of premium applications built by one independent developer with an 
+              Nexfiy is a growing suite of premium applications built by one independent developer with an 
               unwavering commitment to quality.
             </p>
             
