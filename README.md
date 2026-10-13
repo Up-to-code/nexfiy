@@ -178,3 +178,7 @@ Built with [v0](https://v0.app) - Premium landing page template
 ---
 
 **Ready to launch?** Your Nexora landing page is production-ready! 🎉
+
+## Project links
+
+[Source](https://github.com/Up-to-code/nexfiy) · [Issues](https://github.com/Up-to-code/nexfiy/issues) · [Public project directory](https://github.com/qentrah/.github/blob/main/profile/PROJECTS.md)
